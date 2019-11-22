@@ -22,11 +22,11 @@ moments used as test data. Test labels were not released and teams were expected
 #### Model 1:
 We started using the Profile features [Meta-data of a happy moment such as age, category, gender etc., etc.,] without considering the actual moment. This model is an attempt to understand if everything conveyed in the moment has been captured and would it suffice to predict the accuracy of social & agency. If the profile features are sufficient to predict social & agencies then we may get rid of the complexities involved in text understanding & rather focus on generating/capturing the profile features.
 
-| Preprocessing \(50 dimensions\)  | LABEL ENCODING  
-| Features \(100 dimensions\) | Profile Features  
-| Classifier \(100 dimensions\)    | XGBoost  
-| Social Accuracy \(100 dimensions\)  |  61.2%  
-| Agency Accuracy \(100 dimensions\)  | 72.83%  
+| Preprocessing       | LABEL ENCODING  
+| Features            | Profile Features  
+| Classifier          | XGBoost  
+| Social Accuracy     |  61.2%  
+| Agency Accuracy     | 72.83%  
 
 #### Conclusion & Insights:
   Profile features alone are not sufficient to build the model & we need to consider the moments data. However, profile features may act well to support the model built on moments data. We may use, model built on profile features as a complementary model i.e. an ensemble model can be built with profile features model as one of them.
@@ -36,113 +36,75 @@ We started using the Profile features [Meta-data of a happy moment such as age, 
   Text (moment) based feature engineering. As an exploratory analysis we initially adopted one of the approach suggested by one of the state of the art papers i.e. to use 4grams to build features. We do not have any intuition behind the same, however did this as an exploratory learning experiment. Below are the results wrt the same.
 
 
-| Model                                | Preprocessing | Features | Feature \-Representation | Social | Agency |
-|--------------------------------------|---------------|------------------------------------|--------|--------|
-| Naive    Bayes \(50 dimensions\)     | 0\.59         | 0\.43    |                         | 0\.70  |        |
-| Logistic Regres. \(100 dimensions\)  | 0\.50         | 0\.39    |                         | 0\.62  |        |
-| XGBoost Forest \(100 dimensions\)    | 0\.45         | 0\.36    |                         | 0\.58  |        |
-| Neural Network   \(100 dimensions\)  | 0\.45         | 0\.36    |                         | 0\.58  |        |
+| Model                  | Preprocessing     | Features | Feature \-Representation | Social | Agency |
+|------------------------|-------------------|------------------------------------ |--------|--------|
+| Naive    Bayes         | Stopword + Stem   | 4-Grams  |      TFIDF               | 50.19% | 72.54% |
+| Logistic Regres.       | Stopword + Stem   | 4-Grams  |      TFIDF               | 50 %   | 72.92% |
+| XGBoost Forest         | Stopword + Stem   | 4-Grams  |      TFIDF               | 58 %   | 74.59% |
+| Neural Network         | Stopword + Stem   | 4-Grams  |      TFIDF               | 49.19 %| 74.61% |
+
+#### Conclusion & Insights:
+We could not deduce anything definite from the experiment. However, we doubt if 4 grams is a good representation of a happy moment as with varied classifiers there is not much difference in the accuracy of the models. Also, they are either less or closer to the baseline accuracies.
+
+
+#### Model 3:
+In this attempt we opted for a bottom up approach i.e. to study the data and come up with an approach to define the right set of features.
+
+| Model                  | Preprocessing     | Features | Feature \-Representation                     | Social | Agency |
+|------------------------|-------------------|---------------------------------------------------------|--------|--------|
+| XGBoost Forest         | POS Tagging       | 4-Grams  | Noun Phrases                                 | 50.19% | 72.54% |
+| XGBoost Forest         | POS Tagging       | 4-Grams  | All except verbs, punct, adjectives & adverbs| 50 %   | 72.92% |
+| XGBoost Forest         | POS Tagging       | 4-Grams  | All except adjectives & adverbs              | 58 %   | 74.59% |
 
 
 
+#### Deep Learning Models:
+
+  This classification model works on deep learning classifier, Convolutional Neural Network. The model implementation details are as follows: 
+
+Data Preprocessing:
+
+1. Split the sentences into word lists and omit all punctuation 	marks.Sentences are processed one by one into arrays of words. All punctuations, including comma, period, exclamation mark, question 	mark and so on, are discarded. A special case is that all 	abbreviations, like I’m, and we’re, remain unchanged. Stop words 	are also removed. 	
+2. Transformed the sentences into sequences and pad them so that they are of the same length.
+3. The agency and social labels were converted to binary vectors for 	training and validation purpose.
+
+Split of the data set into a 3:1 ratio for training and testing has been done.
+
+The Model has the following layers:
+1. Embedding Layer : The embedding layer is fed with 1-D moment description, which are 	then em-bedded into 2-D matrices. The size of the second dimension is 100, which means every word will be transformed into a 100-dimensional vector. For example, for a sentence with a length of 13, we first add 7 zeros in the front to reach the length 20. After passing the embedding layer, the size of the output matrix will be(20, 100). We have used pre-trained Glove as our embedding.
+2. Convolutional 	Layer : There is a 1D convolutional layer with kernels that produce 1-D 	vector after sliding over the 2-D matrix so formed from the embedding layer.
+3. Dropout Layer with a value 0.2
+4. Max Pooling Layer
+
+During training mini-batch gradient descent with batch size 32 and Adam optimizer is used with a learning rate of 0.1. The loss function used is binary cross entropy. 
+
+The results are as follows: 
+( Average Accuracy over 10 epochs )
+We have tried with different word embeddings for CNN. Pre-trained glove provided better results than the glove trained on the corpus as the corpus is small sized.Below is the comparision of different embeddings:
+
+| Model                  | Embeddings                 | Social | Agency   |
+|------------------------|----------------------------|-------------------|
+| CNN                    | Randomly initialized       | 88.46% | 82.177%  |
+| CNN                    | Pre-Trained GloVe          | 89 %   | 83.08%   |
+| CNN                    | GloVe trained on Corpus    | 80.6 % | 81.065%  |
+
+## Conclusions:
+
+1.  N-grams may not be the right feature engineering for this task.(Our customized features with ngrams did not enhance the performance of the models)
+2.  Emotional features may not add any value towards the accuracy of both the classifications.
+3.  Preprocessing such as stopword removal, stemming should not be done. In fact, in agency classification, it is observed that even punctuations add to the model’s performance.
+4.  POS tagging with customized selection of words using tags worked the best for us. (Inclusion of ‘verbs’ for Agency classification increased the accuracy by 0.03%
 
 
+## Task 2 Conclusions:
+One of the factors that can help modeling happiness can be “Achievements: A moment that makes one feel better about themselves” Social Service etc., can be under the same bucket.
 
 
+ ## Complete Report
 
-
-
-![lstm_internal](imgs/LSTM_onTheInside.png)
-
-#### RNN cell
-
-![rnn_internal](imgs/RNN_onTheInside.png)
-
-### Binary Classification
-
-For binary classification, we used a combination of recurrent networks followed by a softmax classifier. The classifier design was not considered more intricate due to the constraints on the data as mentioned above.
-
-A recurrent network can be either an RNN (recurrent neural network) or an LSTM (long short term memory). Recurrent models are used in this project as they capture features of the previous cell as well as the current input, weighted on a non-linearity, usually a tanh function. Here we use simple many-to-one recurrent model of size 100 dimensions. The difference in performance for RNNs and LSTMs comes from the fact that LSTMs have three gates which determine what information should be retained from the previous hidden states and what information should be discarded. LSTMs are preferred over RNNs in order to solve the vanishing gradient problem.
-
-We run four experiments, a single LSTM of 50 and 100 dimensions, an two layer RNN of 100 dimensions and a two layer LSTM of 100 dimensions. The results of the experiments are given in the section below.
-
-### Multiclass Classification Model
-
-For multi-class classification, we use a slightly more complicated model of a stacked LSTM. A stacked LSTM has multiple sequences of LSTMs in a stack, such that for the second layer onwards, the input is not the embedding, but the hidden state of the previous layer. The diagram below shows this configuration of stacked LSTMs.
-
-#### Architecture
-
-![architecture](imgs/Model.png)
-
-## Results and Analysis
-
-### Binary Classification
-
-We can see in table below where the precision, recall and F1 values of the binary classification experiment are provided. We see two important observations here. First, we see that the lower dimension single layer LSTM performs the best despite being the simplest model.
-
-This is for two main reasons, which are as follows:
-
-* The number of data points on training are quite few, and the ratio of positive to negative samples are quite skewed. This causes larger models to overfit, and because of that the larger the model in dimension size, the worse it performs.
-* The data is skewed in more than one way. The comments which are sexist stereotypes tend to be much longer than those which are not sexist, specifically because the instagram scraping methodology only allows for scraping based on hashtags. 
-
-
-| Model                                | Recall | Precision | F1 \-Score | Accuracy |
-|--------------------------------------|--------|-----------|------------|----------|
-| Single Layer LSTM \(50 dimensions\)  | 0\.59  | 0\.43     | 0\.49      | 0\.70    |
-| Single Layer LSTM \(100 dimensions\) | 0\.50  | 0\.39     | 0\.44      | 0\.62    |
-| Two Layer LSTM \(100 dimensions\)    | 0\.45  | 0\.36     | 0\.41      | 0\.58    |
-| Single Layer RNN \(100 dimensions\)  | 0\.43  | 0\.37     | 0\.39      | 0\.57    |
-
-We show the graphs of precision, recall, accuracy and F1-score of the binary classification experiment below. The effect of data overfitting is seen almost immediately. Further, note that sparsity and skew in the dataset requires better training data. Higher accuracies may be achieved by working with the better data.
-
-![](results/sns_classfication/train_loss_allsns.png)
-
-Recall            |  Precision
-:-------------------------:|:-------------------------:
-![](results/sns_classfication/rec_all_sns.png) | ![](results/sns_classfication/prec_all_sns.png)
-Accuracy            |  F1-score
-![](results/sns_classfication/acc_all_sns.png) | ![](results/sns_classfication/f1-score-sns.png)
-
-
-### Mutli-class Classification
-
-The table below shows the results of the multiclass classification experiment. Again here we see that the simplest model performs the best. We also see that using a stacked LSTM shows a slight increase in performance, but the model runs the risk of overfitting.
-
-
-| Model                                | Recall | Precision | F1 \-Score | Accuracy |
-|--------------------------------------|--------|-----------|------------|----------|
-| Single Layer LSTM \(50 dimensions\)  | 0\.55  | 0\.49     | 0\.518     | 0\.605   |
-| Single Layer LSTM \(100 dimensions\) | 0\.51  | 0\.44     | 0\.472     | 0\.535   |
-| Two Layer LSTM \(100 dimensions\)    | 0\.484 | 0\.443    | 0\.462     | 0\.513   |
-
-
-We also show the loss values of each of the models, binary and multi-class classification. We see that while the loss falls most quickly for the model that stabilizes quickest, based on which the local minima is achieved. While the local minima is not the best performing, the model learns certain charcteristics of the data, such as the use of certain terms, length of caption or comment and so on.
-
-![](results/multiple/mutiple_train_loss_all.png)
-
-Recall            |  Precision
-:-------------------------:|:-------------------------:
-![](results/multiple/multi_rec_all_sns.png) | ![](results/multiple/multi_prec_all_sns.png)
-Accuracy            |  F1-score
-![](results/multiple/mutlti_acc_all_sns.png) | ![](results/multiple/mutiple_f1_all.png)
-
-## Conclusion
-
-In this project, we performed a study into the classification of Instagram captions and comments. We first annotated the data using a set of well formed guidelines. The deprecating API provided by Instagram inhibits the process the scraping the data off the site and they delete any comments or posts that are reported within a short period. This lead to a small number of sexist posts in our dataset to start with.
-
-With this dataset, we started off with a manual annotation of small number of posts, and using this seed data, we then used an active learning classifier in order to classify a large number of captions and comments. We cross verified the tags to see if the tags were right.
-
-We then experimented with different classifiers, where an LSTM classifier with only $50$ hidden layer dimension performed the best compared to higher dimension, or multi-layer classifier, even though we made sure that the training set had equal distribution between the 2 classes, for both binary and hierarchical classifier. This can be attributed to the skewed dataset that we have for this task. Further work over here would be to expand the dataset to include more sexist posts/captions.
-
-The further work in this would be first to better the dataset by including more sexist captions. We can also identify more classes in the sexist types in the dataset, such as slut shaming, mansplaining, etc. The next step would be to experiment with other classifiers like Bi-LSTM, CNN, CNN-biLSTM-Attention, Hierarchical-biLSTM-Attention, and BERT, and with GloVe Twitter embedding along with GloVe Wikipedia.
-
-## Complete Report
-
-The complete report can be found [here](https://drive.google.com/file/d/1ioXSm3dWoSF00Z3TjhdgCie4yebOwjra/view?usp=sharing).
+The complete report can be found [here](https://drive.google.com/file/d/1S8xeRiZ78x_hQ2U8dZIU-tvDi89BIxxU/view?usp=sharing).
 
 ## Video Presentation
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/okd5UwopDJE/0.jpg)](http://www.youtube.com/watch?v=okd5UwopDJE "Video Title")
-
-
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/okhttps://www.youtube.com/watch?v=PLgEViZcyfs&feature=youtu.bed5UwopDJE/0.jpg)](http://www.youtube.com/watch?v=okd5UwopDJE "Video Title")
 
