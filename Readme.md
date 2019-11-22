@@ -92,7 +92,7 @@ We have tried with different word embeddings for CNN. Pre-trained glove provided
 
 ## Conclusions:
 
-1.  N-grams may not be the rhttps://www.youtube.com/watch?v=PLgEViZcyfs&feature=youtu.beight feature engineering for this task.(Our customized features with ngrams did not enhance the performance of the models)
+1.  N-grams may not be the right feature engineering for this task.(Our customized features with ngrams did not enhance the performance of the models)
 2.  Emotional features may not add any value towards the accuracy of both the classifications.
 3.  Preprocessing such as stopword removal, stemming should not be done. In fact, in agency classification, it is observed that even punctuations add to the model’s performance.
 4.  POS tagging with customized selection of words using tags worked the best for us. (Inclusion of ‘verbs’ for Agency classification increased the accuracy by 0.03%
@@ -109,6 +109,5 @@ The complete report can be found [here](https://drive.google.com/file/d/1S8xeRiZ
 
 ## Video Presentation
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/okhttps://www.youtube.com/watch?v=PLgEViZcyfs&feature=youtu.bed5UwopDJE/0.jpg)](http://www.youtube.com/watch?v=okd5UwopDJE "Video Title")
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/okhttps://www.youtube.com/watch?v=PLgEViZcyfs&feature=youtu.bed5UwopDJE/0.jpg)](https://www.youtube.com/watch?v=UX9tsxTc7IM "Video Title")
 
-https://www.youtube.com/watch?v=PLgEViZcyfs&feature=youtu.be
