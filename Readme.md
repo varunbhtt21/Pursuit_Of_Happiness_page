@@ -5,8 +5,7 @@
 
   The overall goal of the CL-Aff Shared Task is to understand what makes people happy, and the factors contributing towards such happy moments. Related work has centered around understanding and building lexicons that focus on emotional expressions [5,9], while Reed et al. learn lexico-functional linguistic patterns as reliable predictors for first-person affect, and constructed a First-Person Sentiment Corpus of positive and negative first-person sentences from blog journal entries. Wu et al. propose a synthetic categorization of different sources for well-being and happiness targeting the private micro-blogs in Echo, where users rate their daily events from 1 to 9. These work aim to identify specific compositional semantics that characterize the sentiment of events, and attempt to model happiness at a higher level of generalization, however finding generic characteristics for modeling well-being remains challenging. In this project, we aim to find generic characteristics shared between different affective  classification tasks. Our approach is to compare state-of-the-art methods for linguistic modeling to prior lexicons’ predictive power. While this body of work is broader in scope than the goals we are trying to address, they do include annotated sets of words associated with happiness as well as additional categories of psychological significance.
 
-  The aim of this work is to address the two tasks that are part of the CL-Aff Shared Task. The data provided for this task comes from the HappyDB dataset [1]. Task 1 focuses on binary prediction of two different labels, social and agency. The intention is to understand the context surrounding happy moments and potentially find factors associated with these two labels. Task 2 is fairly open-ended, leaving it to the participant’s imagination to model happiness and derive insights from their models. Here, we predict the concepts label using multi-class classification. We explore various approaches to determine which models work best to characterize contextual aspects of happy moments. Though the predictions of agency and social sound simpler than concepts, we expect that the best models for agency and social prediction could generate similarly optimal performance for concepts, assuming that the classes of social, agency, and concepts share common characteristics. To validate our assumptions, we build different models for general affective classification tasks and then try to gain a deeper understanding of the characteristics of happy moments by interpreting such models with the Riloff’s Autoslog linguistic-pattern learner 
-
+  The aim of this work is to address the two tasks that are part of the CL-Aff Shared Task. The data provided for this task comes from the HappyDB dataset [1]. Task 1 focuses on binary prediction of two different labels, social and agency. The intention is to understand the context surrounding happy moments and potentially find factors associated with these two labels. Task 2 is fairly open-ended, leaving it to the participant’s imagination to model happiness and derive insights from their models. 
 
 
 
@@ -71,12 +70,6 @@ Data Preprocessing:
 ![](Pics/cnn.jpeg)
 
 Split of the data set into a 3:1 ratio for training and testing has been done.
-
-The Model has the following layers:
-1. Embedding Layer : The embedding layer is fed with 1-D moment description, which are 	then em-bedded into 2-D matrices. The size of the second dimension is 100, which means every word will be transformed into a 100-dimensional vector. For example, for a sentence with a length of 13, we first add 7 zeros in the front to reach the length 20. After passing the embedding layer, the size of the output matrix will be(20, 100). We have used pre-trained Glove as our embedding.
-2. Convolutional 	Layer : There is a 1D convolutional layer with kernels that produce 1-D 	vector after sliding over the 2-D matrix so formed from the embedding layer.
-3. Dropout Layer with a value 0.2
-4. Max Pooling Layer
 
 During training mini-batch gradient descent with batch size 32 and Adam optimizer is used with a learning rate of 0.1. The loss function used is binary cross entropy. 
 
