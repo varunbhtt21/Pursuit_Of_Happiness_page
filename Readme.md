@@ -97,6 +97,7 @@ We have tried with different word embeddings for CNN. Pre-trained glove provided
 3.  Preprocessing such as stopword removal, stemming should not be done. In fact, in agency classification, it is observed that even punctuations add to the model’s performance.
 4.  POS tagging with customized selection of words using tags worked the best for us. (Inclusion of ‘verbs’ for Agency classification increased the accuracy by 0.03%
 
+![](Pics/final.png)
 
 ## Task 2 Conclusions:
 One of the factors that can help modeling happiness can be “Achievements: A moment that makes one feel better about themselves” Social Service etc., can be under the same bucket.
