@@ -102,5 +102,5 @@ The complete report can be found [here](https://drive.google.com/file/d/1S8xeRiZ
 
 ## Video Presentation
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/okhttps://www.youtube.com/watch?v=PLgEViZcyfs&feature=youtu.bed5UwopDJE/0.jpg)](https://www.youtube.com/watch?v=UX9tsxTc7IM "Video Title")
+[![IMAGE ALT TEXT](![](Pics/Front_page.jpeg))](https://www.youtube.com/watch?v=UX9tsxTc7IM "Video Title")
 
