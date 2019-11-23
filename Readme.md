@@ -100,19 +100,9 @@ One of the factors that can help modeling happiness can be “Achievements: A mo
 
 The complete report can be found [here](https://drive.google.com/file/d/1S8xeRiZ78x_hQ2U8dZIU-tvDi89BIxxU/view?usp=sharing).
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=UX9tsxTc7IM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 
 ## Video Presentation
 
-[![IMAGE ALT TEXT](![](Pics/Front_page.jpeg))](https://www.youtube.com/watch?v=UX9tsxTc7IM "Video Title")
-
- <section id="video">
-      	<h2 class="title"> Video Tutorial </h2>
-      	<!-- 21:9 aspect ratio -->
-      	<div class="embed-responsive embed-responsive-21by9">
-      		<iframe class="embed-responsive-item" width="100%" height="515" src="https://www.youtube.com/watch?v=UX9tsxTc7IM" frameborder="0" allowfullscreen></iframe>
-      	</div>	            
-      </section>
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=UX9tsxTc7IM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 __GITHUB LINK__: https://github.com/DeepthiKarnam00/InPursuitOfHappiness
