@@ -38,9 +38,9 @@ We started using the Profile features [Meta-data of a happy moment such as age, 
 | Model                  | Preprocessing     | Features | Feature \-Representation | Social | Agency |
 |------------------------|-------------------|------------------------------------ |--------|--------|
 | Naive    Bayes         | Stopword + Stem   | 4-Grams  |      TFIDF               | 50.19% | 72.54% |
-| Logistic Regres.       | Stopword + Stem   | 4-Grams  |      TFIDF               | 50 %   | 72.92% |
-| XGBoost Forest         | Stopword + Stem   | 4-Grams  |      TFIDF               | 58 %   | 74.59% |
-| Neural Network         | Stopword + Stem   | 4-Grams  |      TFIDF               | 49.19 %| 74.61% |
+| Logistic Regres.       | Stopword + Stem   | 4-Grams  |      TFIDF               | 50%   | 72.92% |
+| XGBoost Forest         | Stopword + Stem   | 4-Grams  |      TFIDF               | 58%   | 74.59% |
+| Neural Network         | Stopword + Stem   | 4-Grams  |      TFIDF               | 49.19%| 74.61% |
 
 #### Conclusion & Insights:
 We could not deduce anything definite from the experiment. However, we doubt if 4 grams is a good representation of a happy moment as with varied classifiers there is not much difference in the accuracy of the models. Also, they are either less or closer to the baseline accuracies.
@@ -52,8 +52,8 @@ In this attempt we opted for a bottom up approach i.e. to study the data and com
 | Model                  | Preprocessing     | Features | Feature \-Representation                     | Social | Agency |
 |------------------------|-------------------|---------------------------------------------------------|--------|--------|
 | XGBoost Forest         | POS Tagging       | 4-Grams  | Noun Phrases                                 | 50.19% | 72.54% |
-| XGBoost Forest         | POS Tagging       | 4-Grams  | All except verbs, punct, adjectives & adverbs| 50 %   | 72.92% |
-| XGBoost Forest         | POS Tagging       | 4-Grams  | All except adjectives & adverbs              | 58 %   | 74.59% |
+| XGBoost Forest         | POS Tagging       | 4-Grams  | All except verbs, punct, adjectives & adverbs| 50%   | 72.92% |
+| XGBoost Forest         | POS Tagging       | 4-Grams  | All except adjectives & adverbs              | 58%   | 74.59% |
 
 
 
@@ -80,8 +80,8 @@ We have tried with different word embeddings for CNN. Pre-trained glove provided
 | Model                  | Embeddings                 | Social | Agency   |
 |------------------------|----------------------------|-------------------|
 | CNN                    | Randomly initialized       | 88.46% | 82.177%  |
-| CNN                    | Pre-Trained GloVe          | 89 %   | 83.08%   |
-| CNN                    | GloVe trained on Corpus    | 80.6 % | 81.065%  |
+| CNN                    | Pre-Trained GloVe          | 89%   | 83.08%   |
+| CNN                    | GloVe trained on Corpus    | 80.6% | 81.065%  |
 
 ## Conclusions:
 
