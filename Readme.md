@@ -18,7 +18,7 @@ moments used as test data. Test labels were not released and teams were expected
 
 ## Methodology
 
-#### Model 1:
+### Model 1:
 We started using the Profile features [Meta-data of a happy moment such as age, category, gender etc., etc.,] without considering the actual moment. This model is an attempt to understand if everything conveyed in the moment has been captured and would it suffice to predict the accuracy of social & agency. If the profile features are sufficient to predict social & agencies then we may get rid of the complexities involved in text understanding & rather focus on generating/capturing the profile features.
 
 | Preprocessing       | LABEL ENCODING  
@@ -31,7 +31,7 @@ We started using the Profile features [Meta-data of a happy moment such as age, 
   Profile features alone are not sufficient to build the model & we need to consider the moments data. However, profile features may act well to support the model built on moments data. We may use, model built on profile features as a complementary model i.e. an ensemble model can be built with profile features model as one of them.
 
 
-#### Model 2
+### Model 2
   Text (moment) based feature engineering. As an exploratory analysis we initially adopted one of the approach suggested by one of the state of the art papers i.e. to use 4grams to build features. We do not have any intuition behind the same, however did this as an exploratory learning experiment. Below are the results wrt the same.
 
 
@@ -46,7 +46,7 @@ We started using the Profile features [Meta-data of a happy moment such as age, 
 We could not deduce anything definite from the experiment. However, we doubt if 4 grams is a good representation of a happy moment as with varied classifiers there is not much difference in the accuracy of the models. Also, they are either less or closer to the baseline accuracies.
 
 
-#### Model 3:
+### Model 3:
 In this attempt we opted for a bottom up approach i.e. to study the data and come up with an approach to define the right set of features.
 
 | Model                  | Preprocessing     | Features | Feature \-Representation                     | Social | Agency |
@@ -57,7 +57,7 @@ In this attempt we opted for a bottom up approach i.e. to study the data and com
 
 
 
-#### Deep Learning Models:
+### Model 4[Deep Learning Models]:
 
   This classification model works on deep learning classifier, Convolutional Neural Network. The model implementation details are as follows: 
 
