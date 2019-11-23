@@ -104,3 +104,11 @@ The complete report can be found [here](https://drive.google.com/file/d/1S8xeRiZ
 
 [![IMAGE ALT TEXT](![](Pics/Front_page.jpeg))](https://www.youtube.com/watch?v=UX9tsxTc7IM "Video Title")
 
+ <section id="video">
+      	<h2 class="title"> Video Tutorial </h2>
+      	<!-- 21:9 aspect ratio -->
+      	<div class="embed-responsive embed-responsive-21by9">
+      		<iframe class="embed-responsive-item" width="100%" height="515" src="https://www.youtube.com/watch?v=UX9tsxTc7IM" frameborder="0" allowfullscreen></iframe>
+      	</div>	            
+      </section>
+
