@@ -105,7 +105,7 @@ The complete report can be found [here](https://drive.google.com/file/d/1S8xeRiZ
 
 <iframe width="560" height="315" src="https://www.youtube.com/watch?v=UX9tsxTc7IM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Video Link : [here](https://www.youtube.com/watch?v=UX9tsxTc7IM).
+__Video Link__ : [here](https://www.youtube.com/watch?v=UX9tsxTc7IM).
 
 
 __GITHUB LINK__: https://github.com/DeepthiKarnam00/InPursuitOfHappiness
