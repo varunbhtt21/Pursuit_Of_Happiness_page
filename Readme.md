@@ -96,7 +96,7 @@ We have tried with different word embeddings for CNN. Pre-trained glove provided
 One of the factors that can help modeling happiness can be “Achievements: A moment that makes one feel better about themselves” Social Service etc., can be under the same bucket.
 
 
- ## Complete Report
+## Complete Report
 
 The complete report can be found [here](https://drive.google.com/file/d/1S8xeRiZ78x_hQ2U8dZIU-tvDi89BIxxU/view?usp=sharing).
 
